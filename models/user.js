@@ -21,7 +21,14 @@ const userSchema = new mongoose.Schema({
       ref: "Toughts",
     },
   ],
+  //add friends
+  //Array of _id values referencing the User model (self-reference)
+
+  //add
+  //virtual called friendCount that retrieves the length of the user's friends array field on query.
 });
+
+
 // Initialize our User model
 const User = model('user', userSchema);
 
