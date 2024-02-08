@@ -29,4 +29,4 @@ thoughtSchema
         return this.reactions.length;
     });
 
-module.exports
+module.exports = thoughtSchema;
