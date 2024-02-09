@@ -1,5 +1,5 @@
 const { Schema } = require("mongoose");
-
+const reactionSchema = require("./reactionSchema.js");
 
 const thoughtSchema = new Schema({
   thoughtText: {
@@ -9,24 +9,20 @@ const thoughtSchema = new Schema({
     minlength: 1,
   },
   createdAt: {
-    type: Date, 
+    type: Date,
     default: Date.now,
-    //Add getter function add here 
+    //Add getter function add here
   },
   username: {
     type: String,
     required: true,
   },
   reactions: [reactionSchema],
-  }
-);
-
+});
 
 //virtual called reationCount that retrieves length of thoughts reactions array field on query
-thoughtSchema
-    .virtual('reactionCount')
-    .get(function () {
-        return this.reactions.length;
-    });
+thoughtSchema.virtual("reactionCount").get(function () {
+  return this.reactions.length;
+});
 
 module.exports = thoughtSchema;
