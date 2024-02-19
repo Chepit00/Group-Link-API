@@ -1,8 +1,8 @@
 //Import the user model
-const user = require("../models/user");
+const user = require("./user");
 
 //Import the thoughts model
-const thoughts = require("../models/thoughts");
+const Thoughts = require("./Thoughts");
 
 //Export the user and thoughts models
-module.exports = { user, thoughts }
+module.exports = { user, Thoughts };

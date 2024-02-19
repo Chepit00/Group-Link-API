@@ -1,15 +1,14 @@
 // Define Mongoose
-const mongoose = require("mongoose");
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require('mongoose');
 
 
 // Schema to create User model
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
     required: true,
-    trimmed: true,
+    trim: true,
   },
   email: {
     type: String,
@@ -20,18 +19,28 @@ const userSchema = new mongoose.Schema({
   thoughts: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Toughts",
+      ref: "Thoughts",
     },
   ],
-  //add friends
-  //Array of _id values referencing the User model (self-reference)
-
-  //add
-  //virtual called friendCount that retrieves the length of the user's friends array field on query.
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+},
+  {
+    toJSON: {
+    virtuals: true,
+    },
+    id: false,
 });
 
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
 
 // Initialize our User model
-const User = model('user', userSchema);
+const User = model('User', userSchema);
 
 module.exports = User;
