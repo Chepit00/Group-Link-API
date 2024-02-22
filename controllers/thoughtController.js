@@ -112,7 +112,7 @@ module.exports = {
           .json({ message: "No thought found with that ID :(" });
       }
 
-      res.status(200).json({ thought, message: "Reaction deleted!" });
+      res.status(200).json({ thought, message: "Reaction deleted!"});
     } catch (err) {
       res.status(500).json(err);
     }
