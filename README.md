@@ -16,6 +16,8 @@
 
 This project is an API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. It utilizes Express.js for routing, a MongoDB database for data storage, and the Mongoose ODM for modeling and interacting with MongoDB.
 
+video link : https://drive.google.com/file/d/1BuFcQxfn-0hVWVxoldSqOMJJoQCi3j1b/view
+
 ## Installation
 
 1. Clone the repository to your local machine.
