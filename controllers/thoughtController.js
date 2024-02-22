@@ -12,6 +12,7 @@ module.exports = {
     }
   },
 
+  //gets single thought by thougts Id 
   async getSingleThought(req, res) {
     try {
       const thought = await Thoughts.findById(req.params.thoughtId);
@@ -25,6 +26,7 @@ module.exports = {
     }
   },
 
+  //creates new thought via username, userID, and ThoughtText
   async newThought(req, res) {
     try {
       const { thoughtText, username } = req.body;
@@ -52,6 +54,7 @@ module.exports = {
     }
   },
 
+  //updates thought by thoughts ID and a new Thought Text 
   async updateThought(req, res) {
     try {
       const thought = await Thoughts.findByIdAndUpdate(
@@ -69,6 +72,7 @@ module.exports = {
     }
   },
 
+  //deleting associated thought via Id 
   async deleteThought(req, res) {
     try {
       const thought = await Thoughts.findByIdAndDelete({
@@ -84,6 +88,7 @@ module.exports = {
     }
   },
 
+  //finds thought via ID, gets reaction txt from body and sets it to "reactions"
   async createReaction(req, res) {
     try {
       const thought = await Thoughts.findOneAndUpdate(
@@ -97,7 +102,7 @@ module.exports = {
     }
   },
 
-
+//finds thought via ID, uses "$pull" to delete reaction via ID 
   async deleteReaction(req, res) {
     try {
       const thought = await Thoughts.findOneAndUpdate(

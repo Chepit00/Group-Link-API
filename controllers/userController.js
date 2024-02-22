@@ -1,6 +1,7 @@
 const { user, Thoughts } = require('../models');
 
 module.exports = {
+  //locates all users in "user" list 
   async getUsers(req, res) {
     try {
       const users = await user.find();
@@ -10,6 +11,7 @@ module.exports = {
     }
   },
 
+  //locates single user via ID 
   async getSingleUsers(req, res) {
     try {
       const users = await user
@@ -25,17 +27,19 @@ module.exports = {
     }
   },
 
+  //creates user by "body" requirments username and email 
   async createUser(req, res) {
     try {
       const { username, email } = req.body;
       const newUser = await user.create({ username, email });
 
-      res.status(201).json({ newUser, message: "NEW USER!"});
+      res.status(201).json({ newUser, message: "NEW USER!" });
     } catch (err) {
       res.status(500).json(err);
     }
   },
 
+  //locates user via ID and "body" requirments 
   async updateUser(req, res) {
     try {
       const users = await user.findOneAndUpdate(
@@ -54,6 +58,7 @@ module.exports = {
     }
   },
 
+  //locates user via ID and thoughts attached to user and deletes data
   async deleteUser(req, res) {
     try {
       const users = await user.findByIdAndDelete({
@@ -79,7 +84,7 @@ module.exports = {
     }
   },
 
-  // Add a friend to the user's friend list
+  // Add a friend to the user's friend list by passing users & "friends" ID then "push" into friends list
   async addFriend(req, res) {
     console.log("Adding a friend");
     try {
@@ -110,7 +115,7 @@ module.exports = {
     }
   },
 
-  
+  // Removes the friend from the user's friend list
   async removeFriend(req, res) {
     console.log("Removing a friend");
     try {
@@ -119,7 +124,6 @@ module.exports = {
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Remove the friend from the user's friend list
       users.friends = users.friends.filter(
         (friendId) => friendId != req.params.friendsId
       );
